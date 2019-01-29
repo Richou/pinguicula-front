@@ -1,0 +1,22 @@
+@import '../../assets/styles/global';
+
+div.login-container {
+  @include respond-to(small-screens) {width: 95%;}
+  @include respond-to(medium-screens) {width: 55%;}
+  @include respond-to(wide-screens) {width: 40%;}
+  margin: auto;
+  text-align: center;
+
+  form {
+    div.login-input {
+      width: 100%;
+    }
+
+    button.login-action {
+      margin-top: 20px;
+      @include respond-to(small-screens) {width: 100%;}
+      @include respond-to(medium-screens) {width: 55%;}
+      @include respond-to(wide-screens) {width: 40%;}
+    }
+  }
+}
