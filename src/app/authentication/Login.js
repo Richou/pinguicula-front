@@ -26,7 +26,6 @@ export class Login extends React.Component {
   onSubmitForm = event => {
     event.preventDefault();
 
-
   };
 
   render() {

@@ -14,9 +14,7 @@ div.login-container {
 
     button.login-action {
       margin-top: 20px;
-      @include respond-to(small-screens) {width: 100%;}
-      @include respond-to(medium-screens) {width: 55%;}
-      @include respond-to(wide-screens) {width: 40%;}
+      width: 100%;
     }
   }
 }
