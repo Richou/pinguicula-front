@@ -2,10 +2,10 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import './App.scss';
-import {Login} from "./authentication/Login";
+import Login from "./authentication/Login";
 import {HOME_ROUTE, LOGIN_ROUTE} from "./PinguiculaRoutes";
 import {AuthorizedRoute} from '../components';
-import {Home} from "./home";
+import Home from "./home/Home";
 
 const theme = createMuiTheme({
   typography: {
