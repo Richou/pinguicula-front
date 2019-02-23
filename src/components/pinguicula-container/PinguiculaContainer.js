@@ -3,6 +3,7 @@ import {withRouter} from "react-router";
 import {ToastContainer} from "react-toastify";
 import {clearSession} from "../../utils/SessionUtils";
 import {LOGIN_ROUTE} from "../../app/PinguiculaRoutes";
+import {PinguiculaHeader} from "../pinguicula-header/PinguiculaHeader";
 
 class PinguiculaContainer extends React.Component {
 
@@ -14,7 +15,7 @@ class PinguiculaContainer extends React.Component {
   render() {
     return (
       <div className="main-container">
-        <header onClick={this.onClickHandler}>The Header !</header>
+        <PinguiculaHeader logoutHandler={this.onClickHandler}>The Header !</PinguiculaHeader>
         {this.props.children}
         <ToastContainer />
       </div>

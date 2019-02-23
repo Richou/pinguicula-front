@@ -35,7 +35,9 @@ class Login extends React.Component {
       setToken(token);
       this.props.history.push(HOME_ROUTE.url);
     } catch (error) {
-      toast.error("Bad Credentials !");
+      toast.error("Bad Credentials !", {
+        position: 'top-center'
+      });
     }
 
   };
