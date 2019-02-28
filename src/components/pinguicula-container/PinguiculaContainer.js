@@ -3,7 +3,7 @@ import {withRouter} from "react-router";
 import {ToastContainer} from "react-toastify";
 import {clearSession} from "../../utils/SessionUtils";
 import {LOGIN_ROUTE} from "../../app/PinguiculaRoutes";
-import {PinguiculaHeader} from "../pinguicula-header/PinguiculaHeader";
+import PinguiculaHeader from "../pinguicula-header/PinguiculaHeader";
 
 class PinguiculaContainer extends React.Component {
 

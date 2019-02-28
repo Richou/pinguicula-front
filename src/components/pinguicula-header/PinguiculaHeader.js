@@ -8,12 +8,28 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import "./PinguiculaHeader.scss";
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import ContactMail from '@material-ui/icons/ContactMail';
+import Contacts from '@material-ui/icons/Contacts';
+import {withStyles} from '@material-ui/core/styles';
+import Divider from "@material-ui/core/es/Divider/Divider";
 
-export class PinguiculaHeader extends React.Component {
+const styles = {
+  list: {
+    width: 250,
+  },
+};
+
+class PinguiculaHeader extends React.Component {
 
   state = {
     auth: true,
     anchorEl: null,
+    drawerOpen: false,
   };
 
   handleMenu = event => {
@@ -31,15 +47,36 @@ export class PinguiculaHeader extends React.Component {
     this.setState({ anchorEl: null });
   };
 
+  toggleDrawer = (open) => () => {
+    this.setState({
+      drawerOpen: open,
+    });
+  };
 
   render() {
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
+    const { classes } = this.props;
+
+    const sideList = (
+      <div className={classes.list}>
+        <h3>Menu</h3>
+        <Divider />
+        <List>
+          {['Users', 'Contacts'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>{index % 2 === 0 ? <Contacts /> : <ContactMail />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </div>
+    );
 
     return (
       <AppBar position="static" className="pinguicula-header-container">
         <Toolbar>
-          <IconButton color="inherit" aria-label="Menu">
+          <IconButton color="inherit" aria-label="Menu" onClick={this.toggleDrawer(true)}>
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" className="pinguicula-header-title">
@@ -72,9 +109,23 @@ export class PinguiculaHeader extends React.Component {
               <MenuItem onClick={this.onLogoutClickHandler}>Logout</MenuItem>
             </Menu>
           </div>
+          <SwipeableDrawer
+            open={this.state.drawerOpen}
+            onClose={this.toggleDrawer(false)}
+            onOpen={this.toggleDrawer(true)}>
+            <div
+              tabIndex={0}
+              role="button"
+              onClick={this.toggleDrawer(false)}
+              onKeyDown={this.toggleDrawer(false)}>
+              {sideList}
+            </div>
+          </SwipeableDrawer>
         </Toolbar>
       </AppBar>
     )
   }
 
 }
+
+export default withStyles(styles)(PinguiculaHeader)
