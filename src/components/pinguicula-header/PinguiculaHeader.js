@@ -7,24 +7,17 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import "./PinguiculaHeader.scss";
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ContactMail from '@material-ui/icons/ContactMail';
-import Contacts from '@material-ui/icons/Contacts';
-import {withStyles} from '@material-ui/core/styles';
 import Divider from "@material-ui/core/es/Divider/Divider";
+import {Link} from "react-router-dom";
+import {NAVIGATIONS_MENU} from "./PinguiculaMenu";
+import "./PinguiculaHeader.scss";
 
-const styles = {
-  list: {
-    width: 250,
-  },
-};
-
-class PinguiculaHeader extends React.Component {
+export default class PinguiculaHeader extends React.Component {
 
   state = {
     auth: true,
@@ -56,17 +49,16 @@ class PinguiculaHeader extends React.Component {
   render() {
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
-    const { classes } = this.props;
 
     const sideList = (
-      <div className={classes.list}>
+      <div className="side-menu-container">
         <h3>Menu</h3>
         <Divider />
         <List>
-          {['Users', 'Contacts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <Contacts /> : <ContactMail />}</ListItemIcon>
-              <ListItemText primary={text} />
+          {NAVIGATIONS_MENU.map((navigation) => (
+            <ListItem button key={navigation.label} component={Link} to={navigation.link}>
+              <ListItemIcon>{navigation.icon}</ListItemIcon>
+              <ListItemText primary={navigation.label} />
             </ListItem>
           ))}
         </List>
@@ -125,7 +117,4 @@ class PinguiculaHeader extends React.Component {
       </AppBar>
     )
   }
-
 }
-
-export default withStyles(styles)(PinguiculaHeader)
